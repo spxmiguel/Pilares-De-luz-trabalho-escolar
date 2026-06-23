@@ -15,10 +15,15 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>("inicio");
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
-  // Track scrolling to highlight correct nav item
   useEffect(() => {
     const handleScroll = () => {
+      // Update progress bar
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
+
+      // Update active nav section
       const sections = ["inicio", "conceitos", "laboratorio", "galeria"];
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
@@ -35,19 +40,17 @@ export default function App() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="bg-[#06081a] min-h-screen text-white font-sans selection:bg-ice-blue/35 selection:text-white relative">
-      
-      {/* Absolute top subtle progress beam */}
-      <div 
-        className="fixed top-0 left-0 h-0.5 bg-gradient-to-r from-ice-blue to-cold-violet z-[100] transition-all duration-300"
-        style={{
-          width: `${typeof window !== "undefined" ? (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100 : 0}%`
-        }}
+
+      {/* Scroll progress beam */}
+      <div
+        className="fixed top-0 left-0 h-0.5 bg-gradient-to-r from-ice-blue to-cold-violet z-[100] transition-[width] duration-75"
+        style={{ width: `${scrollProgress}%` }}
       />
 
       {/* Global Navbar */}
