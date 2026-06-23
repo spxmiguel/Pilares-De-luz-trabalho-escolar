@@ -19,14 +19,15 @@ Física — 2º Trimestre — 9º Ano
 - O que são Pilares de Luz
 - Como se formam (reflexão em cristais de gelo)
 - Relação com a Física (Lei da Reflexão)
-- Quando e onde aparecem
-- Curiosidades
+- Simulação interativa de reflexão
+- Laboratório visual
+- Galeria de imagens
 - Vídeo explicativo
 - Conclusão
 
 ## 🛠️ Tecnologias
 
-React · TypeScript · Vite · Tailwind CSS · Google AI Studio
+React · TypeScript · Vite · Tailwind CSS · Framer Motion
 
 ## 🚀 Rodar localmente
 
