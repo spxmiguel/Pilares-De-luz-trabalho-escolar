@@ -33,18 +33,27 @@ export default function Footer() {
           Os pilares de luz são um lembrete visual impressionante de como condições atmosféricas específicas e as leis fundamentais da óptica podem colaborar para criar espetáculos naturais de tirar o fôlego.
         </p>
 
+        {/* Authors */}
+        <div className="flex space-x-1 mb-10 select-none">
+          {["DAVI", "MIGUEL", "ARTHUR"].map((name, i) => (
+            <span key={name} className="font-display text-2xl sm:text-3xl font-black tracking-tight text-white/10">
+              {name}{i < 2 && <span className="text-ice-blue/20 mx-1">·</span>}
+            </span>
+          ))}
+        </div>
+
         {/* Footer legalities and design details */}
         <div className="w-full border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-white/30 space-y-4 sm:space-y-0">
           <div className="flex items-center space-x-2">
             <span>&copy; {currentYear} Pilares de Luz.</span>
             <span className="hidden sm:inline">|</span>
-            <span>Trabalho de Física e Óptica Atmosférica</span>
+            <span>Trabalho de Física — 9º Ano</span>
           </div>
 
           <div className="flex space-x-4">
-            <span className="hover:text-ice-blue transition-colors cursor-pointer">Início</span>
-            <span className="hover:text-ice-blue transition-colors cursor-pointer">Conceitos</span>
-            <span className="hover:text-ice-blue transition-colors cursor-pointer">Laboratório</span>
+            <a href="#inicio"     className="hover:text-ice-blue transition-colors">Início</a>
+            <a href="#conceitos"  className="hover:text-ice-blue transition-colors">Conceitos</a>
+            <a href="#laboratorio" className="hover:text-ice-blue transition-colors">Laboratório</a>
           </div>
         </div>
       </div>

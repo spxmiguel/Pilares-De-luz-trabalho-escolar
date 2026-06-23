@@ -44,22 +44,15 @@ export default function Hero() {
 
       {/* Hero Header Context */}
       <div className="w-full max-w-4xl text-center z-10 flex flex-col items-center">
-        {/* Author Pills */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
+        {/* Hook question */}
+        <motion.p
+          initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex space-x-2 sm:space-x-3 mb-6 sm:mb-8"
+          className="mb-5 text-xs sm:text-sm font-mono tracking-widest text-ice-blue/70 uppercase"
         >
-          {["DAVI", "MIGUEL", "ARTHUR"].map((name) => (
-            <span
-              key={name}
-              className="px-4 py-1 rounded-full text-[10px] sm:text-xs font-grotesk tracking-widest text-white/50 border border-white/10 bg-white/[0.02]"
-            >
-              {name}
-            </span>
-          ))}
-        </motion.div>
+          Você já viu um pilar de luz?
+        </motion.p>
 
         {/* Title */}
         <motion.h1
