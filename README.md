@@ -1,20 +1,36 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🌌 Pilares de Luz
 
-# Run and deploy your AI Studio app
+Site escolar sobre o fenômeno óptico dos **Pilares de Luz**, feito para o trabalho de Física do 9º ano.
 
-This contains everything you need to run your app locally.
+🔗 **[Ver site ao vivo](https://spxmiguel.github.io/Pilares-De-luz-trabalho-escolar/)**
 
-View your app in AI Studio: https://ai.studio/apps/8f52d717-61e4-4403-ae10-c6138bcc8ee7
+---
 
-## Run Locally
+## 👥 Integrantes
 
-**Prerequisites:**  Node.js
+Davi, Miguel e Arthur
 
+## 📚 Disciplina
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Física — 2º Trimestre — 9º Ano
+
+## 📖 Conteúdo
+
+- O que são Pilares de Luz
+- Como se formam (reflexão em cristais de gelo)
+- Relação com a Física (Lei da Reflexão)
+- Quando e onde aparecem
+- Curiosidades
+- Vídeo explicativo
+- Conclusão
+
+## 🛠️ Tecnologias
+
+React · TypeScript · Vite · Tailwind CSS · Google AI Studio
+
+## 🚀 Rodar localmente
+
+```bash
+npm install
+npm run dev
+```
