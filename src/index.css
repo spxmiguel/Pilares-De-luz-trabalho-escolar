@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-grotesk: "Space Grotesk", sans-serif;
+
+  --color-primary-space: #06081a;
+  --color-ice-blue: #a8d4f5;
+  --color-cold-violet: #c4b5fd;
+  --color-solar-amber: #f5c842;
+}
+
+/* Custom background star animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+.star {
+  animation: twinkle var(--duration, 3s) infinite ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #06081a;
+  color: #e2e2e2;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06081a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1b1e36;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8d4f5;
+}
+
+/* Glassmorphism custom classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 212, 245, 0.15);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(168, 212, 245, 0.4);
+  box-shadow: 0 0 15px rgba(168, 212, 245, 0.1);
+}
+
