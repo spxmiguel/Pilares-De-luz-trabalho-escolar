@@ -2,101 +2,132 @@ import React from "react";
 import { motion } from "motion/react";
 import { Zap, Waves, Palette, Minimize2 } from "lucide-react";
 
-const concepts = [
-  {
-    id: "reflexao",
-    label: "Reflexão",
-    icon: Zap,
-    color: "#a8d4f5",
-    role: "Mecanismo principal",
-    description:
-      "Os cristais de gelo hexagonais suspensos no ar atuam como espelhos planos microscópicos. Cada cristal reflete a luz da fonte em direção ao observador, criando a ilusão de uma coluna vertical contínua e brilhante.",
-    principal: true,
-  },
-  {
-    id: "refracao",
-    label: "Refração",
-    icon: Waves,
-    color: "#c4b5fd",
-    role: "Não é o causador",
-    description:
-      "A refração ocorre quando a luz muda de meio e desvia sua trajetória — é o que forma o arco-íris. Nos pilares, os cristais refletem a luz, não a refratam. Por isso o pilar permanece vertical e mantém a cor da fonte.",
-    principal: false,
-  },
-  {
-    id: "dispersao",
-    label: "Dispersão",
-    icon: Palette,
-    color: "#f9a8d4",
-    role: "Ausente — prova da reflexão",
-    description:
-      "A dispersão separa a luz em cores (como num prisma). Nos pilares isso não acontece: uma luz laranja gera um pilar laranja. A ausência de dispersão confirma que o fenômeno é reflexão especular, não refração.",
-    principal: false,
-  },
-  {
-    id: "absorcao",
-    label: "Absorção",
-    icon: Minimize2,
-    color: "#6ee7b7",
-    role: "Efeito secundário",
-    description:
-      "Os cristais absorvem uma fração da energia luminosa ao longo do percurso. Por isso o pilar é sempre menos brilhante que a fonte original — quanto mais cristais, maior a absorção e mais difuso o pilar aparece.",
-    principal: false,
-  },
-];
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.12 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } },
+};
 
 export default function PhysicsConcepts() {
   return (
-    <section id="fisica" className="py-20 border-t border-white/5">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-14">
-          <h2 className="font-display text-4xl sm:text-5xl font-black text-white mb-4">
-            A Física por Trás
-          </h2>
-          <p className="text-white/50 text-sm sm:text-base max-w-xl leading-relaxed">
-            Quatro fenômenos ópticos — e como cada um se relaciona (ou não) com a formação dos pilares de luz.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {concepts.map((c, i) => {
-            const Icon = c.icon;
-            return (
-              <motion.div
-                key={c.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`relative rounded-xl border p-6 flex flex-col gap-3 ${
-                  c.principal
-                    ? "border-ice-blue/30 bg-ice-blue/[0.06]"
-                    : "border-white/[0.08] bg-white/[0.02]"
-                }`}
-              >
-                {c.principal && (
-                  <span className="absolute top-4 right-4 font-mono text-[9px] tracking-widest text-ice-blue bg-ice-blue/10 border border-ice-blue/20 px-2 py-0.5 rounded-full uppercase">
-                    Principal
-                  </span>
-                )}
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center"
-                  style={{ background: `${c.color}18`, border: `1px solid ${c.color}35` }}
-                >
-                  <Icon size={18} style={{ color: c.color }} />
-                </div>
-                <div>
-                  <h3 className="font-display text-xl font-bold text-white">{c.label}</h3>
-                  <p className="font-mono text-[10px] tracking-wider uppercase mt-0.5" style={{ color: c.color }}>
-                    {c.role}
-                  </p>
-                </div>
-                <p className="text-white/55 text-sm leading-relaxed">{c.description}</p>
-              </motion.div>
-            );
-          })}
-        </div>
+    <section id="fisica" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+          A Física por Trás
+        </h2>
+        <p className="text-xs font-mono text-white/40 mt-2 sm:mt-0">FENÔMENOS ÓPTICOS</p>
       </div>
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 md:grid-cols-6 gap-6"
+      >
+        {/* REFLEXÃO — destaque, col-span-4 */}
+        <motion.div
+          variants={itemVariants}
+          className="md:col-span-4 glass-panel glass-panel-hover rounded-lg p-6 sm:p-8 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex justify-between items-start mb-6">
+              <div className="p-3 bg-white/[0.03] rounded border border-white/10 group-hover:border-ice-blue/30 transition-colors">
+                <Zap size={22} className="text-ice-blue" />
+              </div>
+              <span className="text-xs font-mono text-white/30 font-bold group-hover:text-ice-blue/60 transition-colors">01</span>
+            </div>
+            <h3 className="font-display text-xl sm:text-2xl font-semibold text-white group-hover:text-ice-blue transition-colors mb-4">
+              Reflexão
+            </h3>
+            <p className="font-sans text-sm sm:text-base text-white/60 leading-relaxed">
+              Mecanismo principal dos pilares de luz. Os cristais de gelo hexagonais suspensos no ar atuam como <strong>espelhos planos microscópicos</strong>. Cada cristal reflete a luz da fonte em direção ao observador, criando a ilusão de uma coluna vertical contínua e brilhante.
+            </p>
+          </div>
+          <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-white/40">
+            <span>MECANISMO PRINCIPAL</span>
+            <span className="text-ice-blue/60">REFLEXÃO ESPECULAR</span>
+          </div>
+        </motion.div>
+
+        {/* REFRAÇÃO — col-span-2 */}
+        <motion.div
+          variants={itemVariants}
+          className="md:col-span-2 glass-panel glass-panel-hover rounded-lg p-6 sm:p-8 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex justify-between items-start mb-6">
+              <div className="p-3 bg-white/[0.03] rounded border border-white/10 group-hover:border-cold-violet/30 transition-colors">
+                <Waves size={22} className="text-cold-violet" />
+              </div>
+              <span className="text-xs font-mono text-white/30 font-bold group-hover:text-cold-violet/60 transition-colors">02</span>
+            </div>
+            <h3 className="font-display text-xl sm:text-2xl font-semibold text-white group-hover:text-cold-violet transition-colors mb-4">
+              Refração
+            </h3>
+            <p className="font-sans text-sm sm:text-base text-white/60 leading-relaxed">
+              Ocorre quando a luz muda de meio e desvia sua trajetória — é o que forma o arco-íris. Nos pilares, os cristais <strong>refletem</strong>, não refratam.
+            </p>
+          </div>
+          <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-white/40">
+            <span>NÃO É O CAUSADOR</span>
+          </div>
+        </motion.div>
+
+        {/* DISPERSÃO — col-span-3 */}
+        <motion.div
+          variants={itemVariants}
+          className="md:col-span-3 glass-panel glass-panel-hover rounded-lg p-6 sm:p-8 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex justify-between items-start mb-6">
+              <div className="p-3 bg-white/[0.03] rounded border border-white/10 group-hover:border-solar-amber/30 transition-colors">
+                <Palette size={22} className="text-solar-amber" />
+              </div>
+              <span className="text-xs font-mono text-white/30 font-bold group-hover:text-solar-amber/60 transition-colors">03</span>
+            </div>
+            <h3 className="font-display text-xl sm:text-2xl font-semibold text-white group-hover:text-solar-amber transition-colors mb-4">
+              Dispersão
+            </h3>
+            <p className="font-sans text-sm sm:text-base text-white/60 leading-relaxed">
+              A dispersão separa a luz em suas cores componentes, como num prisma. Nos pilares isso <strong>não acontece</strong>: uma luz laranja gera um pilar laranja. A ausência de dispersão confirma que o fenômeno é reflexão especular.
+            </p>
+          </div>
+          <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-white/40">
+            <span>AUSENTE</span>
+            <span>PROVA DA REFLEXÃO</span>
+          </div>
+        </motion.div>
+
+        {/* ABSORÇÃO — col-span-3 */}
+        <motion.div
+          variants={itemVariants}
+          className="md:col-span-3 glass-panel glass-panel-hover rounded-lg p-6 sm:p-8 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex justify-between items-start mb-6">
+              <div className="p-3 bg-white/[0.03] rounded border border-white/10 group-hover:border-white/20 transition-colors">
+                <Minimize2 size={22} className="text-white/50" />
+              </div>
+              <span className="text-xs font-mono text-white/30 font-bold">04</span>
+            </div>
+            <h3 className="font-display text-xl sm:text-2xl font-semibold text-white mb-4">
+              Absorção
+            </h3>
+            <p className="font-sans text-sm sm:text-base text-white/60 leading-relaxed">
+              Os cristais absorvem uma fração da energia luminosa ao longo do percurso. Por isso o pilar é sempre <strong>menos brilhante</strong> que a fonte original — quanto mais cristais, maior a absorção e mais difuso o pilar aparece.
+            </p>
+          </div>
+          <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-white/40">
+            <span>EFEITO SECUNDÁRIO</span>
+            <span>ATENUAÇÃO</span>
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
