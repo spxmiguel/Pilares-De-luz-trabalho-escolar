@@ -8,8 +8,7 @@ export default function VideoSection() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
         <div>
-          <span className="text-xs font-mono tracking-widest text-cold-violet uppercase">Módulo 02</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-2 flex items-center gap-3">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white flex items-center gap-3">
             Assista e Entenda
             <PlayCircle className="text-ice-blue opacity-70" size={36} />
           </h2>

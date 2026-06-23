@@ -319,8 +319,7 @@ export default function Laboratory() {
   return (
     <section id="laboratorio" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#06081a]">
       <div className="flex flex-col items-center text-center mb-10">
-        <span className="text-xs font-mono tracking-widest text-cold-violet uppercase">Módulo do Laboratório</span>
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-2">
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
           Laboratório de Óptica Virtual
         </h2>
         <p className="mt-4 text-white/60 max-w-2xl text-sm sm:text-base font-sans">

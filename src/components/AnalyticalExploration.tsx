@@ -24,8 +24,7 @@ export default function AnalyticalExploration() {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
         <div>
-          <span className="text-xs font-mono tracking-widest text-cold-violet uppercase">Módulo 01</span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-2">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
             Exploração Analítica
           </h2>
         </div>

@@ -47,12 +47,9 @@ const concepts = [
 
 export default function PhysicsConcepts() {
   return (
-    <section id="fisica" className="py-20 border-t border-white/5 bg-[#06081a]">
+    <section id="fisica" className="py-20 border-t border-white/5">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-14">
-          <p className="font-mono text-[11px] tracking-widest text-ice-blue/60 uppercase mb-3">
-            Módulo 02
-          </p>
           <h2 className="font-display text-4xl sm:text-5xl font-black text-white mb-4">
             A Física por Trás
           </h2>
