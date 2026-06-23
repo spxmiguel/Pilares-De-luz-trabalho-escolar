@@ -19,6 +19,21 @@ export default function Laboratory() {
   const containerRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number | null>(null);
 
+  // Auto-start when section enters viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsPlaying(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   // Crystal particles state inside useRef to prevent constant re-renders
   const particlesRef = useRef<Array<{
     x: number;
