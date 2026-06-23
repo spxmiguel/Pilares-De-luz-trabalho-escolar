@@ -10,6 +10,7 @@ import AnalyticalExploration from "./components/AnalyticalExploration";
 import GeometryOfCold from "./components/GeometryOfCold";
 import Laboratory from "./components/Laboratory";
 import Gallery from "./components/Gallery";
+import PhysicsConcepts from "./components/PhysicsConcepts";
 import VideoSection from "./components/VideoSection";
 import Footer from "./components/Footer";
 
@@ -94,6 +95,9 @@ export default function App() {
 
         {/* ANALYTICAL CARDS SECTION */}
         <AnalyticalExploration />
+
+        {/* PHYSICS CONCEPTS SECTION */}
+        <PhysicsConcepts />
 
         {/* VIDEO SECTION */}
         <VideoSection />
