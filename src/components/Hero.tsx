@@ -21,23 +21,8 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="relative min-h-screen pt-24 sm:pt-32 pb-16 flex flex-col items-center justify-between overflow-hidden px-4 sm:px-6 lg:px-8">
-      {/* Dynamic Star Field background */}
+      {/* Soft ambient light leaks */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(40)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white star"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 1}px`,
-              height: `${Math.random() * 2 + 1}px`,
-              "--duration": `${2 + Math.random() * 4}s`,
-              opacity: Math.random() * 0.7 + 0.1,
-            } as React.CSSProperties}
-          />
-        ))}
-        {/* Soft background light leaks */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-ice-blue/5 filter blur-[100px]" />
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-cold-violet/5 filter blur-[100px]" />
       </div>
