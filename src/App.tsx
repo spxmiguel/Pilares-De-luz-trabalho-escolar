@@ -16,8 +16,8 @@ import Footer from "./components/Footer";
 
 // Stable star positions spread across the full page height
 const STARS = Array.from({ length: 160 }, (_, i) => ({
-  top:      ((i * 37 + 11) % 1000) / 10,   // 0–99.9% of full page height
-  left:     ((i * 61 + 7)  % 100),
+  top:      ((i * 37 + 11) % 1000) / 10,
+  left:     ((i * 61 + 7)  % 92),   // max 92% — never bleeds off screen on mobile
   size:     ((i * 13) % 3) + 1,
   duration: ((i * 7)  % 4) + 2,
   opacity:  (((i * 17) % 7) + 3) / 10,
@@ -55,7 +55,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-[#06081a] min-h-screen text-white font-sans selection:bg-ice-blue/35 selection:text-white relative">
+    <div className="bg-[#06081a] min-h-screen text-white font-sans selection:bg-ice-blue/35 selection:text-white relative overflow-x-hidden">
 
       {/* Global star field — absolute, scrolls with page */}
       <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
