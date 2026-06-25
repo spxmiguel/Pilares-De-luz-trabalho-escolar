@@ -7,17 +7,40 @@ interface Props {
   onThemeChange?: (accent: string, secondary: string) => void;
 }
 
-function hexToRgb(hex: string): [number, number, number] {
+function toLinear(c: number) { return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+function toSrgb(c: number) { return c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055; }
+
+function hexToOklab(hex: string): [number, number, number] {
   const n = parseInt(hex.replace("#", ""), 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  const r = toLinear(((n >> 16) & 255) / 255);
+  const g = toLinear(((n >> 8) & 255) / 255);
+  const b = toLinear((n & 255) / 255);
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  return [
+    0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
+    1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
+    0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s,
+  ];
 }
-function rgbToHex(r: number, g: number, b: number): string {
-  return "#" + [r, g, b].map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
+
+function oklabToHex(L: number, a: number, b: number): string {
+  const l_ = L + 0.3963377774 * a + 0.2158037573 * b;
+  const m_ = L - 0.1055613458 * a - 0.0638541728 * b;
+  const s_ = L - 0.0894841775 * a - 1.2914855480 * b;
+  const l = l_ ** 3, m = m_ ** 3, s = s_ ** 3;
+  const clamp = (v: number) => Math.round(Math.max(0, Math.min(1, toSrgb(v))) * 255);
+  const r = clamp( 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s);
+  const g = clamp(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s);
+  const bv = clamp(-0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s);
+  return "#" + [r, g, bv].map(v => v.toString(16).padStart(2, "0")).join("");
 }
+
 function lerpColor(from: string, to: string, t: number): string {
-  const [r1, g1, b1] = hexToRgb(from);
-  const [r2, g2, b2] = hexToRgb(to);
-  return rgbToHex(r1 + (r2 - r1) * t, g1 + (g2 - g1) * t, b1 + (b2 - b1) * t);
+  const [L1, a1, b1] = hexToOklab(from);
+  const [L2, a2, b2] = hexToOklab(to);
+  return oklabToHex(L1 + (L2 - L1) * t, a1 + (a2 - a1) * t, b1 + (b2 - b1) * t);
 }
 
 export default function Hero({ introComplete = true, onThemeChange }: Props) {
