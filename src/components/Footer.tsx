@@ -17,7 +17,7 @@ export default function Footer() {
         />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 flex flex-col items-center text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10 flex flex-col items-center text-center">
         {/* Subtle geometric dot accent */}
         <div className="p-3 bg-white/[0.02] border border-white/5 rounded-full text-ice-blue mb-8 animate-pulse">
           <Snowflake size={24} />
@@ -36,8 +36,8 @@ export default function Footer() {
         {/* Authors */}
         <div className="flex space-x-1 mb-10 select-none">
           {["DAVI", "MIGUEL", "ARTHUR"].map((name, i) => (
-            <span key={name} className="font-display text-2xl sm:text-3xl font-black tracking-tight text-white/10">
-              {name}{i < 2 && <span className="text-ice-blue/20 mx-1">·</span>}
+            <span key={name} className="font-display text-2xl sm:text-3xl font-black tracking-tight text-white/25">
+              {name}{i < 2 && <span className="text-ice-blue/40 mx-1">·</span>}
             </span>
           ))}
         </div>

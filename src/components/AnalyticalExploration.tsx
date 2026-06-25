@@ -20,7 +20,7 @@ export default function AnalyticalExploration() {
   };
 
   return (
-    <section id="conceitos" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#06081a]">
+    <section id="conceitos" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
         <div>

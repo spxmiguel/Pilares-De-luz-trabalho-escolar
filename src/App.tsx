@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import IntroScreen from "./components/IntroScreen";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import AnalyticalExploration from "./components/AnalyticalExploration";
@@ -24,8 +25,10 @@ const STARS = Array.from({ length: 160 }, (_, i) => ({
 }));
 
 export default function App() {
+  const [intro, setIntro] = useState(true);
   const [activeSection, setActiveSection] = useState<string>("inicio");
   const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const handleIntroComplete = useCallback(() => setIntro(false), []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +59,7 @@ export default function App() {
 
   return (
     <div className="bg-[#06081a] min-h-screen text-white font-sans selection:bg-ice-blue/35 selection:text-white relative overflow-x-hidden">
+      <IntroScreen visible={intro} onComplete={handleIntroComplete} />
 
       {/* Global star field — absolute, scrolls with page */}
       <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">

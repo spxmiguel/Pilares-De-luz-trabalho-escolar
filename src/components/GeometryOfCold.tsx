@@ -53,7 +53,7 @@ export default function GeometryOfCold() {
   const currentHotspot = hotspots.find(h => h.id === activeHotspot) || hotspots[0];
 
   return (
-    <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#06081a]">
+    <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left column: SVG Interactive Physics Diagram */}

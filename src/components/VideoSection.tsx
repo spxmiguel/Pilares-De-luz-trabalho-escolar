@@ -4,7 +4,7 @@ import { PlayCircle } from "lucide-react";
 
 export default function VideoSection() {
   return (
-    <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-[#06081a]">
+    <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
         <div>
