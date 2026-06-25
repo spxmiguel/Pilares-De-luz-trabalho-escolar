@@ -2,23 +2,29 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Sparkles, HelpCircle, Sun, MapPin, Lightbulb } from "lucide-react";
 
-interface Props { introComplete?: boolean; }
+interface Props {
+  introComplete?: boolean;
+  onThemeChange?: (accent: string, secondary: string) => void;
+}
 
-export default function Hero({ introComplete = true }: Props) {
+export default function Hero({ introComplete = true, onThemeChange }: Props) {
   const [beamColor, setBeamColor] = useState<string>("#f5a855");
   const [beamIntensity, setBeamIntensity] = useState<number>(0.8);
   const [sourceType, setSourceType] = useState<"natural" | "led" | "sodio">("natural");
 
   const sources = [
-    { id: "natural", label: "Sol/Crepúsculo", color: "#f5a855", intensity: 0.95 },
-    { id: "led", label: "LED Urbano", color: "#e2e8f0", intensity: 0.75 },
-    { id: "sodio", label: "Lâmpada de Sódio", color: "#f5c842", intensity: 0.85 },
+    { id: "natural", label: "Sol/Crepúsculo", color: "#f5a855", intensity: 0.95, accent: "#C8922A", secondary: "#E8C068" },
+    { id: "led",     label: "LED Urbano",      color: "#dde8f0", intensity: 0.75, accent: "#7ab4d8", secondary: "#a4cce4" },
+    { id: "sodio",   label: "Lâmpada de Sódio", color: "#f5c842", intensity: 0.85, accent: "#c9a800", secondary: "#e8c830" },
   ];
 
   const handleSourceChange = (src: typeof sources[0]) => {
     setSourceType(src.id as any);
     setBeamColor(src.color);
     setBeamIntensity(src.intensity);
+    document.documentElement.style.setProperty("--color-ice-blue", src.accent);
+    document.documentElement.style.setProperty("--color-cold-violet", src.secondary);
+    onThemeChange?.(src.accent, src.secondary);
   };
 
   return (

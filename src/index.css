@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
+/* Register CSS variables as animatable colors */
+@property --color-ice-blue {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #C8922A;
+}
+@property --color-cold-violet {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #E8C068;
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display", serif;
@@ -26,6 +38,11 @@
 *, *::before, *::after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  transition: --color-ice-blue 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              --color-cold-violet 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html, body {
