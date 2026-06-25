@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Sparkles, HelpCircle, Sun, MapPin, Lightbulb } from "lucide-react";
 
 export default function Hero() {
-  const [beamColor, setBeamColor] = useState<string>("#a8d4f5");
+  const [beamColor, setBeamColor] = useState<string>("#f5a855");
   const [beamIntensity, setBeamIntensity] = useState<number>(0.8);
   const [sourceType, setSourceType] = useState<"natural" | "led" | "sodio">("natural");
 
