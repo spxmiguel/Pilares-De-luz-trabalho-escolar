@@ -206,7 +206,7 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
               style={{
                 left: "50%",
                 transform: "translateX(-50%)",
-                boxShadow: `0 0 4px ${beamColor}`
+                boxShadow: "0 0 4px var(--beam-color)"
               }}
             />
           ))}
@@ -217,9 +217,9 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
           animate={{
             scale: [1, 1.1, 1],
             boxShadow: [
-              `0 0 20px ${beamColor}`,
-              `0 0 40px ${beamColor}`,
-              `0 0 20px ${beamColor}`
+              "0 0 20px var(--beam-color)",
+              "0 0 40px var(--beam-color)",
+              "0 0 20px var(--beam-color)"
             ]
           }}
           transition={{
