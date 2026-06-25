@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 import { Compass, Camera, MapPin, Eye } from "lucide-react";
 import lightPillarsImage from "../assets/images/light_pillars_phenomenon_1782235843019.jpg";
 
@@ -8,15 +9,21 @@ export default function Gallery() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left column: Editorial scientific description */}
-        <div className="lg:col-span-5">
-          <span className="text-xs font-mono text-cold-violet uppercase tracking-wider mb-2 flex items-center space-x-1">
-            <Compass size={12} />
+        <motion.div
+          className="lg:col-span-5"
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <span className="text-xs font-mono text-cold-violet uppercase tracking-wider mb-3 flex items-center space-x-1.5">
+            <Compass size={11} />
             <span>Observação e Registro</span>
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-6">
             Onde a Física Encontra a Arte
           </h2>
-          <p className="font-sans text-sm sm:text-base text-white/70 leading-relaxed mb-6">
+          <p className="font-sans text-sm sm:text-base text-white/60 leading-relaxed mb-6">
             Fotografias reais deste fenômeno revelam quão perfeitamente paralelos e verticais os feixes de luz aparecem para o olho destreinado. Embora pareçam focos de busca militares disparados ao espaço, eles são <strong>estruturas virtuais puras</strong> geradas no plano de foco ocular.
           </p>
 
@@ -45,11 +52,17 @@ export default function Gallery() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right column: Beautiful Photographic Display Frame */}
-        <div className="lg:col-span-7 flex flex-col items-center">
-          <div className="w-full glass-panel rounded-lg p-2 bg-white/[0.01] relative group overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(168,212,245,0.15)]">
+        <motion.div
+          className="lg:col-span-7 flex flex-col items-center"
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.85, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <div className="w-full glass-panel rounded-lg p-2 bg-white/[0.01] relative group overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(200,146,42,0.12)]">
             {/* Direct image link in HTML */}
             <img
               src={lightPillarsImage}
@@ -72,7 +85,7 @@ export default function Gallery() {
               <span>Temp: -22°C</span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

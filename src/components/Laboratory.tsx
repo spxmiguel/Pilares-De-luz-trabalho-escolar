@@ -318,14 +318,20 @@ export default function Laboratory() {
 
   return (
     <section id="laboratorio" className="py-28 lg:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
-      <div className="flex flex-col items-center text-center mb-10">
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+      <motion.div
+        className="flex flex-col items-center text-center mb-12"
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
+      >
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
           Laboratório de Óptica Virtual
         </h2>
-        <p className="mt-4 text-white/60 max-w-2xl text-sm sm:text-base font-sans">
+        <p className="mt-5 text-white/50 max-w-2xl text-sm sm:text-base font-sans leading-relaxed">
           Experimente as condições ideais para a aparição dos pilares de luz. Modifique a temperatura para moldar os cristais, acione o vento para desalinhá-los e observe o reflexo coletivo instantaneamente.
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         

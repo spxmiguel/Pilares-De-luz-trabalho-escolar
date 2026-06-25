@@ -6,13 +6,19 @@ export default function VideoSection() {
   return (
     <section className="py-28 lg:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16">
+      <motion.div
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
+        className="flex flex-col sm:flex-row sm:items-end justify-between mb-16"
+      >
         <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white flex items-center gap-4">
           Assista e Entenda
           <PlayCircle className="text-ice-blue opacity-60" size={32} />
         </h2>
         <p className="text-xs font-mono text-white/35 mt-3 sm:mt-0 uppercase tracking-widest">Óptica Atmosférica</p>
-      </div>
+      </motion.div>
 
       {/* Player */}
       <motion.div
