@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Sparkles, HelpCircle, Sun, MapPin, Lightbulb } from "lucide-react";
 
@@ -7,48 +7,10 @@ interface Props {
   onThemeChange?: (accent: string, secondary: string) => void;
 }
 
-function toLinear(c: number) { return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
-function toSrgb(c: number) { return c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055; }
-
-function hexToOklab(hex: string): [number, number, number] {
-  const n = parseInt(hex.replace("#", ""), 16);
-  const r = toLinear(((n >> 16) & 255) / 255);
-  const g = toLinear(((n >> 8) & 255) / 255);
-  const b = toLinear((n & 255) / 255);
-  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
-  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
-  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
-  return [
-    0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
-    1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
-    0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s,
-  ];
-}
-
-function oklabToHex(L: number, a: number, b: number): string {
-  const l_ = L + 0.3963377774 * a + 0.2158037573 * b;
-  const m_ = L - 0.1055613458 * a - 0.0638541728 * b;
-  const s_ = L - 0.0894841775 * a - 1.2914855480 * b;
-  const l = l_ ** 3, m = m_ ** 3, s = s_ ** 3;
-  const clamp = (v: number) => Math.round(Math.max(0, Math.min(1, toSrgb(v))) * 255);
-  const r = clamp( 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s);
-  const g = clamp(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s);
-  const bv = clamp(-0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s);
-  return "#" + [r, g, bv].map(v => v.toString(16).padStart(2, "0")).join("");
-}
-
-function lerpColor(from: string, to: string, t: number): string {
-  const [L1, a1, b1] = hexToOklab(from);
-  const [L2, a2, b2] = hexToOklab(to);
-  return oklabToHex(L1 + (L2 - L1) * t, a1 + (a2 - a1) * t, b1 + (b2 - b1) * t);
-}
 
 export default function Hero({ introComplete = true, onThemeChange }: Props) {
   const [beamIntensity, setBeamIntensity] = useState<number>(0.95);
   const [sourceType, setSourceType] = useState<"natural" | "led" | "sodio">("natural");
-
-  const rafRef = useRef<number | null>(null);
-  const currentColors = useRef({ accent: "#C8922A", secondary: "#E8C068", beam: "#f5a855" });
 
   const sources = [
     { id: "natural", label: "Sol/Crepúsculo", color: "#f5a855", intensity: 0.95, accent: "#C8922A", secondary: "#E8C068" },
@@ -59,30 +21,10 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
   const handleSourceChange = (src: typeof sources[0]) => {
     setSourceType(src.id as any);
     setBeamIntensity(src.intensity);
-
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-
-    const from = { ...currentColors.current };
-    const to = { accent: src.accent, secondary: src.secondary, beam: src.color };
-    const duration = 1100;
-    const start = performance.now();
-    const ease = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-
-    const tick = (now: number) => {
-      const t = ease(Math.min((now - start) / duration, 1));
-      document.documentElement.style.setProperty("--color-ice-blue",  lerpColor(from.accent,    to.accent,    t));
-      document.documentElement.style.setProperty("--color-cold-violet", lerpColor(from.secondary, to.secondary, t));
-      document.documentElement.style.setProperty("--beam-color",       lerpColor(from.beam,      to.beam,      t));
-      if (t < 1) {
-        rafRef.current = requestAnimationFrame(tick);
-      } else {
-        currentColors.current = { ...to };
-        rafRef.current = null;
-        onThemeChange?.(to.accent, to.secondary);
-      }
-    };
-
-    rafRef.current = requestAnimationFrame(tick);
+    document.documentElement.style.setProperty("--color-ice-blue",   src.accent);
+    document.documentElement.style.setProperty("--color-cold-violet", src.secondary);
+    document.documentElement.style.setProperty("--beam-color",        src.color);
+    onThemeChange?.(src.accent, src.secondary);
   };
 
   return (

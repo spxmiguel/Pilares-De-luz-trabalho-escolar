@@ -18,6 +18,13 @@
   initial-value: #f5a855;
 }
 
+:root {
+  transition:
+    --color-ice-blue   1s cubic-bezier(0.4, 0, 0.2, 1),
+    --color-cold-violet 1s cubic-bezier(0.4, 0, 0.2, 1),
+    --beam-color        1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @keyframes beam-pulse-glow {
   0%, 100% {
     box-shadow:
