@@ -58,7 +58,13 @@ export default function GeometryOfCold() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left column: SVG Interactive Physics Diagram */}
-        <div className="lg:col-span-7 flex flex-col items-center">
+        <motion.div
+          className="lg:col-span-7 flex flex-col items-center"
+          initial={{ opacity: 0, x: -32 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
+        >
           <div className="w-full max-w-xl glass-panel rounded-lg p-4 sm:p-6 relative overflow-hidden">
             <div className="absolute top-4 left-4 z-10">
               <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest bg-white/[0.03] px-2.5 py-1 rounded border border-white/5">
@@ -186,7 +192,7 @@ export default function GeometryOfCold() {
             <Info size={11} />
             <span>Clique nos botões de informação <strong>( i )</strong> acima para explorar a física do diagrama.</span>
           </p>
-        </div>
+        </motion.div>
 
         {/* Right column: Hotspot description block */}
         <motion.div

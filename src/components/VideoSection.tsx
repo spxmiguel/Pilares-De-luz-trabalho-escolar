@@ -25,7 +25,7 @@ export default function VideoSection() {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ type: "spring", stiffness: 80, damping: 20 }}
+        transition={{ duration: 0.85, ease: [0.4, 0, 0.2, 1] }}
       >
         <div
           style={{

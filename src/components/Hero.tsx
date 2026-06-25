@@ -192,7 +192,12 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
       </div>
 
       {/* Quote & Description side-by-side block */}
-      <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 border-t border-white/10 pt-10 sm:pt-12 z-20 items-start">
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={introComplete ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.9, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 border-t border-white/10 pt-10 sm:pt-12 z-20 items-start"
+      >
         {/* Left column: Grand Quote */}
         <div className="md:col-span-5">
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl italic font-semibold text-white/90 leading-tight">
@@ -205,13 +210,12 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
           <p className="font-sans text-sm sm:text-base text-white/60 leading-relaxed">
             Os pilares de luz são uma <strong>ilusão de óptica</strong> de rara beleza, um feixe vertical de luz que parece irradiar diretamente de uma fonte luminosa. Na verdade, eles não existem como colunas físicas. São o resultado de milhões de minúsculos <strong>cristais de gelo</strong> planos suspensos no ar frio, que agem como espelhos microscópicos flutuantes, desviando a luz em direção aos nossos olhos.
           </p>
-          
           <div className="mt-4 flex items-center space-x-2 text-xs font-mono text-ice-blue bg-ice-blue/[0.04] px-3 py-1.5 rounded-sm border border-ice-blue/10 w-fit">
             <Sparkles size={12} className="animate-pulse" />
             <span>Dica: Altere a fonte de luz acima para ver como a cor do pilar muda.</span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
