@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Sparkles, HelpCircle, Sun, MapPin, Lightbulb } from "lucide-react";
 
-export default function Hero() {
+interface Props { introComplete?: boolean; }
+
+export default function Hero({ introComplete = true }: Props) {
   const [beamColor, setBeamColor] = useState<string>("#f5a855");
   const [beamIntensity, setBeamIntensity] = useState<number>(0.8);
   const [sourceType, setSourceType] = useState<"natural" | "led" | "sodio">("natural");
@@ -31,9 +33,9 @@ export default function Hero() {
       <div className="w-full max-w-4xl text-center z-10 flex flex-col items-center">
         {/* Hook question */}
         <motion.p
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={introComplete ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
           className="mb-5 text-xs sm:text-sm font-mono tracking-widest text-ice-blue/70 uppercase"
         >
           Você já viu um pilar de luz?
@@ -41,13 +43,13 @@ export default function Hero() {
 
         {/* Title */}
         <motion.h1
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={introComplete ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.12, ease: [0.4, 0, 0.2, 1] }}
           className="font-display text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white select-none relative"
         >
           PILARES DE LUZ
-          <span 
+          <span
             className="absolute inset-0 filter blur-[12px] opacity-25 select-none pointer-events-none"
             style={{ color: beamColor }}
           >
@@ -57,10 +59,10 @@ export default function Hero() {
 
         {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="mt-6 text-sm sm:text-base md:text-lg max-w-2xl text-white/70 font-sans tracking-wide leading-relaxed px-4"
+          initial={{ opacity: 0, y: 16 }}
+          animate={introComplete ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.24, ease: [0.4, 0, 0.2, 1] }}
+          className="mt-6 text-sm sm:text-base md:text-lg max-w-2xl text-white/60 font-sans leading-relaxed px-4"
         >
           Fenômeno óptico atmosférico causado pela reflexão da luz em cristais de gelo em suspensão.
         </motion.p>

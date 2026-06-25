@@ -25,10 +25,17 @@ const STARS = Array.from({ length: 160 }, (_, i) => ({
 }));
 
 export default function App() {
-  const [intro, setIntro] = useState(true);
+  const firstVisit = typeof sessionStorage !== "undefined" && !sessionStorage.getItem("pilares_v");
+  const [intro, setIntro] = useState(firstVisit);
+  const [introComplete, setIntroComplete] = useState(!firstVisit);
   const [activeSection, setActiveSection] = useState<string>("inicio");
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const handleIntroComplete = useCallback(() => setIntro(false), []);
+
+  const handleIntroComplete = useCallback(() => {
+    setIntro(false);
+    sessionStorage.setItem("pilares_v", "1");
+    setTimeout(() => setIntroComplete(true), 800);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +102,7 @@ export default function App() {
       <main className="relative z-10">
         
         {/* HERO SECTION */}
-        <Hero />
+        <Hero introComplete={introComplete} />
 
         {/* ANALYTICAL CARDS SECTION */}
         <AnalyticalExploration />

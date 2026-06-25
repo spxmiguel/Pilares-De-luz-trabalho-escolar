@@ -23,6 +23,11 @@
   animation: twinkle var(--duration, 3s) infinite ease-in-out;
 }
 
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html, body {
   scroll-behavior: smooth;
   background-color: #06081a;
@@ -31,37 +36,30 @@ html, body {
   max-width: 100vw;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #06081a; }
+::-webkit-scrollbar-thumb { background: #2a2010; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #C8922A; }
 
-::-webkit-scrollbar-track {
-  background: #06081a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1b1e36;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a8d4f5;
-}
-
-/* Glassmorphism custom classes */
+/* Glass panels — gold border */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(168, 212, 245, 0.15);
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 146, 42, 0.12);
 }
 
 .glass-panel-hover {
-  transition: all 0.3s ease;
+  transition: background 0.35s cubic-bezier(0.4,0,0.2,1),
+              border-color 0.35s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 
 .glass-panel-hover:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(168, 212, 245, 0.4);
-  box-shadow: 0 0 15px rgba(168, 212, 245, 0.1);
+  background: rgba(200, 146, 42, 0.04);
+  border-color: rgba(200, 146, 42, 0.35);
+  box-shadow: 0 0 24px rgba(200, 146, 42, 0.08);
 }
+
+/* Section dividers */
+.section-border { border-top: 1px solid rgba(255,255,255,0.05); }
 

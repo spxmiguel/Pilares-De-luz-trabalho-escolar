@@ -4,7 +4,7 @@ import lightPillarsImage from "../assets/images/light_pillars_phenomenon_1782235
 
 export default function Gallery() {
   return (
-    <section id="galeria" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
+    <section id="galeria" className="py-28 lg:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         {/* Left column: Editorial scientific description */}

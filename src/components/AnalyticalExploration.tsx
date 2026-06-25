@@ -20,15 +20,13 @@ export default function AnalyticalExploration() {
   };
 
   return (
-    <section id="conceitos" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
+    <section id="conceitos" className="py-28 lg:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
-        <div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-            Exploração Analítica
-          </h2>
-        </div>
-        <p className="text-xs font-mono text-white/40 mt-2 sm:mt-0">FÍSICA DA ATMOSFERA</p>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16">
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+          Exploração Analítica
+        </h2>
+        <p className="text-xs font-mono text-white/35 mt-3 sm:mt-0 uppercase tracking-widest">Física da Atmosfera</p>
       </div>
 
       {/* Grid of Cards */}

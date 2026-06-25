@@ -4,16 +4,14 @@ import { PlayCircle } from "lucide-react";
 
 export default function VideoSection() {
   return (
-    <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
+    <section className="py-28 lg:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
-        <div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white flex items-center gap-3">
-            Assista e Entenda
-            <PlayCircle className="text-ice-blue opacity-70" size={36} />
-          </h2>
-        </div>
-        <p className="text-xs font-mono text-white/40 mt-2 sm:mt-0">ÓPTICA ATMOSFÉRICA</p>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16">
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white flex items-center gap-4">
+          Assista e Entenda
+          <PlayCircle className="text-ice-blue opacity-60" size={32} />
+        </h2>
+        <p className="text-xs font-mono text-white/35 mt-3 sm:mt-0 uppercase tracking-widest">Óptica Atmosférica</p>
       </div>
 
       {/* Player */}

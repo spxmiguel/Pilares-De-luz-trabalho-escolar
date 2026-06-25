@@ -317,7 +317,7 @@ export default function Laboratory() {
   };
 
   return (
-    <section id="laboratorio" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
+    <section id="laboratorio" className="py-28 lg:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       <div className="flex flex-col items-center text-center mb-10">
         <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
           Laboratório de Óptica Virtual

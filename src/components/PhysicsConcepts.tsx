@@ -13,13 +13,13 @@ const itemVariants = {
 
 export default function PhysicsConcepts() {
   return (
-    <section id="fisica" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
+    <section id="fisica" className="py-28 lg:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16">
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
           A Física por Trás
         </h2>
-        <p className="text-xs font-mono text-white/40 mt-2 sm:mt-0">FENÔMENOS ÓPTICOS</p>
+        <p className="text-xs font-mono text-white/35 mt-3 sm:mt-0 uppercase tracking-widest">Fenômenos Ópticos</p>
       </div>
 
       <motion.div
