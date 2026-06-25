@@ -116,12 +116,12 @@ export default function PhysicsConcepts() {
         >
           <div>
             <div className="flex justify-between items-start mb-6">
-              <div className="p-3 bg-white/[0.03] rounded border border-white/10 group-hover:border-white/20 transition-colors">
-                <Minimize2 size={22} className="text-white/50" />
+              <div className="p-3 bg-white/[0.03] rounded border border-white/10 group-hover:border-violet-400/30 transition-colors">
+                <Minimize2 size={22} className="text-violet-400" />
               </div>
-              <span className="text-xs font-mono text-white/30 font-bold">04</span>
+              <span className="text-xs font-mono text-white/30 font-bold group-hover:text-violet-400/60 transition-colors">04</span>
             </div>
-            <h3 className="font-display text-xl sm:text-2xl font-semibold text-white mb-4">
+            <h3 className="font-display text-xl sm:text-2xl font-semibold text-white group-hover:text-violet-400 transition-colors mb-4">
               Absorção
             </h3>
             <p className="font-sans text-sm sm:text-base text-white/60 leading-relaxed">
