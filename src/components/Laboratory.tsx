@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { motion } from "motion/react";
 import { Play, Pause, RefreshCw, Eye, EyeOff, Thermometer, Wind, Lightbulb, Sliders, Info } from "lucide-react";
 import { SimulationSettings } from "../types";
 

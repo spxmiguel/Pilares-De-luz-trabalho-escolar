@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import { Info, Sparkles, BookOpen } from "lucide-react";
 
 interface Hotspot {
@@ -188,9 +189,15 @@ export default function GeometryOfCold() {
         </div>
 
         {/* Right column: Hotspot description block */}
-        <div className="lg:col-span-5 flex flex-col justify-center">
-          <span className="text-xs font-mono text-ice-blue uppercase tracking-wider mb-2">ANÁLISE ÓPTICA</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight mb-6">
+        <motion.div
+          className="lg:col-span-5 flex flex-col justify-center"
+          initial={{ opacity: 0, x: 32 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <span className="text-xs font-mono text-ice-blue uppercase tracking-wider mb-3">Análise Óptica</span>
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-6">
             A Geometria do Frio
           </h2>
 
@@ -220,7 +227,7 @@ export default function GeometryOfCold() {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>
