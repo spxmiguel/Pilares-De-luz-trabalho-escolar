@@ -12,6 +12,24 @@
   inherits: true;
   initial-value: #E8C068;
 }
+@property --beam-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f5a855;
+}
+
+@keyframes beam-pulse-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 15px color-mix(in srgb, var(--beam-color) 25%, transparent),
+      0 0 30px color-mix(in srgb, var(--beam-color) 10%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 38px color-mix(in srgb, var(--beam-color) 40%, transparent),
+      0 0 65px color-mix(in srgb, var(--beam-color) 18%, transparent);
+  }
+}
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;

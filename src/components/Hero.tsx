@@ -44,12 +44,11 @@ function lerpColor(from: string, to: string, t: number): string {
 }
 
 export default function Hero({ introComplete = true, onThemeChange }: Props) {
-  const [beamColor, setBeamColor] = useState<string>("#f5a855");
-  const [beamIntensity, setBeamIntensity] = useState<number>(0.8);
+  const [beamIntensity, setBeamIntensity] = useState<number>(0.95);
   const [sourceType, setSourceType] = useState<"natural" | "led" | "sodio">("natural");
 
   const rafRef = useRef<number | null>(null);
-  const currentColors = useRef({ accent: "#C8922A", secondary: "#E8C068" });
+  const currentColors = useRef({ accent: "#C8922A", secondary: "#E8C068", beam: "#f5a855" });
 
   const sources = [
     { id: "natural", label: "Sol/Crepúsculo", color: "#f5a855", intensity: 0.95, accent: "#C8922A", secondary: "#E8C068" },
@@ -59,31 +58,27 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
 
   const handleSourceChange = (src: typeof sources[0]) => {
     setSourceType(src.id as any);
-    setBeamColor(src.color);
     setBeamIntensity(src.intensity);
 
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
-    const fromAccent = currentColors.current.accent;
-    const fromSecondary = currentColors.current.secondary;
-    const toAccent = src.accent;
-    const toSecondary = src.secondary;
+    const from = { ...currentColors.current };
+    const to = { accent: src.accent, secondary: src.secondary, beam: src.color };
     const duration = 1100;
     const start = performance.now();
     const ease = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
     const tick = (now: number) => {
       const t = ease(Math.min((now - start) / duration, 1));
-      const accent = lerpColor(fromAccent, toAccent, t);
-      const secondary = lerpColor(fromSecondary, toSecondary, t);
-      document.documentElement.style.setProperty("--color-ice-blue", accent);
-      document.documentElement.style.setProperty("--color-cold-violet", secondary);
+      document.documentElement.style.setProperty("--color-ice-blue",  lerpColor(from.accent,    to.accent,    t));
+      document.documentElement.style.setProperty("--color-cold-violet", lerpColor(from.secondary, to.secondary, t));
+      document.documentElement.style.setProperty("--beam-color",       lerpColor(from.beam,      to.beam,      t));
       if (t < 1) {
         rafRef.current = requestAnimationFrame(tick);
       } else {
-        currentColors.current = { accent: toAccent, secondary: toSecondary };
+        currentColors.current = { ...to };
         rafRef.current = null;
-        onThemeChange?.(toAccent, toSecondary);
+        onThemeChange?.(to.accent, to.secondary);
       }
     };
 
@@ -120,7 +115,7 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
           PILARES DE LUZ
           <span
             className="absolute inset-0 filter blur-[12px] opacity-25 select-none pointer-events-none"
-            style={{ color: beamColor }}
+            style={{ color: "var(--beam-color)" }}
           >
             PILARES DE LUZ
           </span>
@@ -161,20 +156,11 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
           animate={{
             height: ["65%", "85%", "65%"],
             opacity: [beamIntensity * 0.75, beamIntensity * 0.95, beamIntensity * 0.75],
-            boxShadow: [
-              `0 0 15px ${beamColor}40`,
-              `0 0 35px ${beamColor}60`,
-              `0 0 15px ${beamColor}40`
-            ]
           }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-12 w-[3px] rounded-full"
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-12 w-[3px] rounded-full beam-pulse-glow"
           style={{
-            background: `linear-gradient(to top, ${beamColor} 0%, ${beamColor}60 50%, transparent 100%)`,
+            background: "linear-gradient(to top, var(--beam-color) 0%, color-mix(in srgb, var(--beam-color) 38%, transparent) 50%, transparent 100%)",
           }}
         />
 
@@ -184,15 +170,11 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
             opacity: [0.1, 0.25, 0.1],
             width: ["25px", "35px", "25px"]
           }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-12 rounded-full"
           style={{
             height: "70%",
-            background: `linear-gradient(to top, ${beamColor}20 0%, ${beamColor}05 60%, transparent 100%)`,
+            background: "linear-gradient(to top, color-mix(in srgb, var(--beam-color) 13%, transparent) 0%, color-mix(in srgb, var(--beam-color) 2%, transparent) 60%, transparent 100%)",
             filter: "blur(6px)"
           }}
         />
