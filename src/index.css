@@ -20,9 +20,9 @@
 
 :root {
   transition:
-    --color-ice-blue   1s cubic-bezier(0.4, 0, 0.2, 1),
-    --color-cold-violet 1s cubic-bezier(0.4, 0, 0.2, 1),
-    --beam-color        1s cubic-bezier(0.4, 0, 0.2, 1);
+    --color-ice-blue   0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    --color-cold-violet 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    --beam-color        0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes beam-pulse-glow {
