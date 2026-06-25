@@ -102,10 +102,7 @@ export default function App() {
       <main className="relative z-10">
         
         {/* HERO SECTION */}
-        <Hero introComplete={introComplete} onThemeChange={(a, s) => {
-          document.documentElement.style.setProperty("--color-ice-blue", a);
-          document.documentElement.style.setProperty("--color-cold-violet", s);
-        }} />
+        <Hero introComplete={introComplete} onThemeChange={() => {}} />
 
         {/* ANALYTICAL CARDS SECTION */}
         <AnalyticalExploration />

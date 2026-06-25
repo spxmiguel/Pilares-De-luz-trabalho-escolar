@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "motion/react";
 import { Sparkles, HelpCircle, Sun, MapPin, Lightbulb } from "lucide-react";
 
@@ -7,10 +7,26 @@ interface Props {
   onThemeChange?: (accent: string, secondary: string) => void;
 }
 
+function hexToRgb(hex: string): [number, number, number] {
+  const n = parseInt(hex.replace("#", ""), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+function rgbToHex(r: number, g: number, b: number): string {
+  return "#" + [r, g, b].map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
+}
+function lerpColor(from: string, to: string, t: number): string {
+  const [r1, g1, b1] = hexToRgb(from);
+  const [r2, g2, b2] = hexToRgb(to);
+  return rgbToHex(r1 + (r2 - r1) * t, g1 + (g2 - g1) * t, b1 + (b2 - b1) * t);
+}
+
 export default function Hero({ introComplete = true, onThemeChange }: Props) {
   const [beamColor, setBeamColor] = useState<string>("#f5a855");
   const [beamIntensity, setBeamIntensity] = useState<number>(0.8);
   const [sourceType, setSourceType] = useState<"natural" | "led" | "sodio">("natural");
+
+  const rafRef = useRef<number | null>(null);
+  const currentColors = useRef({ accent: "#C8922A", secondary: "#E8C068" });
 
   const sources = [
     { id: "natural", label: "Sol/Crepúsculo", color: "#f5a855", intensity: 0.95, accent: "#C8922A", secondary: "#E8C068" },
@@ -22,9 +38,33 @@ export default function Hero({ introComplete = true, onThemeChange }: Props) {
     setSourceType(src.id as any);
     setBeamColor(src.color);
     setBeamIntensity(src.intensity);
-    document.documentElement.style.setProperty("--color-ice-blue", src.accent);
-    document.documentElement.style.setProperty("--color-cold-violet", src.secondary);
-    onThemeChange?.(src.accent, src.secondary);
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    const fromAccent = currentColors.current.accent;
+    const fromSecondary = currentColors.current.secondary;
+    const toAccent = src.accent;
+    const toSecondary = src.secondary;
+    const duration = 1100;
+    const start = performance.now();
+    const ease = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+    const tick = (now: number) => {
+      const t = ease(Math.min((now - start) / duration, 1));
+      const accent = lerpColor(fromAccent, toAccent, t);
+      const secondary = lerpColor(fromSecondary, toSecondary, t);
+      document.documentElement.style.setProperty("--color-ice-blue", accent);
+      document.documentElement.style.setProperty("--color-cold-violet", secondary);
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        currentColors.current = { accent: toAccent, secondary: toSecondary };
+        rafRef.current = null;
+        onThemeChange?.(toAccent, toSecondary);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
   };
 
   return (
