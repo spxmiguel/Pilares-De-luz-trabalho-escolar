@@ -42,6 +42,14 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Cache clear */}
+        <button
+          onClick={() => { sessionStorage.removeItem("pilares_v"); window.location.reload(); }}
+          className="mb-10 text-[10px] font-mono text-white/15 hover:text-white/40 transition-colors duration-300 cursor-pointer"
+        >
+          ver introdução novamente
+        </button>
+
         {/* Footer legalities and design details */}
         <div className="w-full border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-white/30 space-y-4 sm:space-y-0">
           <div className="flex items-center space-x-2">
